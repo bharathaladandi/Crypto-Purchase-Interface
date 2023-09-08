@@ -30,6 +30,11 @@ export const HomePage = () => {
     }
   };
 
+  const removeFromCart = (indexToRemove) => {
+    const updatedCart = cart.filter((item, index) => index !== indexToRemove);
+    setCart(updatedCart);
+  };
+
   return (
     <div>
       <h1>Crypto Purchase Interface</h1>
@@ -55,15 +60,15 @@ export const HomePage = () => {
       <div>
         <h2>Your Cart</h2>
         {cart.length === 0 ? (
-          <p>Your cart is empty!</p>
+          <p>Your Cart is Empty!</p>
         ) : (
           <div>
             {cart.map((item, index) => (
               <div key={index}>
-                <h4>{item.name}</h4>
-                <h4>Quantity: {item.quantity}</h4>
-                <h4>Total: ${item.total}</h4>
-                <button>Remove</button>
+                <p>{item.name}</p>
+                <p>Quantity: {item.quantity}</p>
+                <p>Total: ${item.total}</p>
+                <button onClick={() => removeFromCart(index)}>Remove</button>
               </div>
             ))}
           </div>
