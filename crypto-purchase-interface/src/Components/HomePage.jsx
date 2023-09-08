@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './style.css';
+
 
 const initialData = [
   { name: 'Bitcoin', price: 40000, quantity: 0 },
@@ -35,12 +37,14 @@ export const HomePage = () => {
     setCart(updatedCart);
   };
 
+  const totalCost = cart.reduce((total, item) => total + item.total, 0);
+
   return (
     <div>
       <h1>Crypto Purchase Interface</h1>
-      <div>
+      <div className="list">
         {data.map((item, index) => (
-          <div key={index}>
+          <div key={index} className="card">
             <h3>{item.name}</h3>
             <p>Price: ${item.price}</p>
             <button onClick={() => setSelectItem(item)}>Select</button>
@@ -57,20 +61,21 @@ export const HomePage = () => {
           </div>
         ))}
       </div>
-      <div>
-        <h2>Your Cart</h2>
+      <div className="cart">
+        <h1>Your Cart</h1>
         {cart.length === 0 ? (
-          <p>Your Cart is Empty!</p>
+          <p className='emtycart'>Your Cart is Empty!</p>
         ) : (
           <div>
             {cart.map((item, index) => (
-              <div key={index}>
+              <div key={index} className="item">
                 <p>{item.name}</p>
                 <p>Quantity: {item.quantity}</p>
                 <p>Total: ${item.total}</p>
                 <button onClick={() => removeFromCart(index)}>Remove</button>
               </div>
             ))}
+            <h2>Total Cost: ${totalCost}</h2>
           </div>
         )}
       </div>
