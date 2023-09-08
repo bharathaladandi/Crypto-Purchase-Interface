@@ -26,10 +26,9 @@ export const HomePage = () => {
       setQuantity(0);
     }
     else {
-      alert("Quantity Should be Greater than 0.");
+      alert("Please Enter a Valit Quantity (Quantity Should be Greater than 0).");
     }
   };
-
 
   return (
     <div>
@@ -52,6 +51,23 @@ export const HomePage = () => {
             )}
           </div>
         ))}
+      </div>
+      <div>
+        <h2>Your Cart</h2>
+        {cart.length === 0 ? (
+          <p>Your cart is empty!</p>
+        ) : (
+          <div>
+            {cart.map((item, index) => (
+              <div key={index}>
+                <h4>{item.name}</h4>
+                <h4>Quantity: {item.quantity}</h4>
+                <h4>Total: ${item.total}</h4>
+                <button>Remove</button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
