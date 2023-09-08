@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const initialData = [
   { name: 'Bitcoin', price: 40000, quantity: 0 },
   { name: 'Ethereum', price: 2800, quantity: 0 },
@@ -25,6 +24,9 @@ export const HomePage = () => {
       setCart([...cart, newItem]);
       setSelectItem(null);
       setQuantity(0);
+    }
+    else {
+      alert("Quantity Should be Greater than 0.");
     }
   };
 
